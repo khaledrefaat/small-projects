@@ -1,0 +1,87 @@
+*::before, 
+*::after,
+* {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;  /* to make Rem = 10px */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {text-transform: capitalize}
+
+.header__h1 {
+    margin: 5rem 0 3rem 0;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.header__p {font-size: 2rem;}
+
+.visual {font-size: 2rem;}
+
+.pads {
+    width: 100%;
+    display: flex;
+}
+
+.pads > div {
+    height: 10rem;
+    width: 10rem;
+    flex: 1;
+}
+
+.pad-1 {background-color: #2ecc71;}
+.pad-2 {background-color: #9b59b6;}
+.pad-3 {background-color: #f1c40f;}
+.pad-4 {background-color: #3498db;}
+.pad-5 {background-color: #006266;}
+.pad-6 {background-color: #ED4C67;}
+
+
+
+.visual > div {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    right: 20%;
+}
+
+@keyframes jump {
+    0% {
+        bottom: 0;
+        right: 20%
+    }
+
+    50% {
+        bottom: 50%;
+        right: 50%;
+    }
+
+    100% {
+        bottom: 0%;
+        right: 80%;
+    }
+}
+
+
+
