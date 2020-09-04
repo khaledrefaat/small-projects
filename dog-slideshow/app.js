@@ -1,39 +1,22 @@
-const img = document.querySelector('.img');
-const sel = document.querySelector('.dog-selector');
-let dog = sel.value.replace(/'-'/gm, '/');
-let regex = /-/gm;
-fetch(`https://dog.ceo/api/breed/${dog}/images/random`)
-	.then((res) => res.json())
-	.then((data) => {
-		console.log(data);
-		img.src = data.message;
-	})
-	.catch((err) => {
-		console.log(err);
-	});
-
-// function randomDog() {
-// 	// when the dog names contains 2 words like(english bulldog) the api puts(english-bulldog) we are replacing the(-)
-// 	let dogRand = sel.value.replace(regex, '/');
-
-// 	fetch(`https://dog.ceo/api/breed/${dogRand}/images/random`)
-// 		.then((res) => res.json())
-// 		.then((data) => {
-// 			console.log(data);
-// 			img.src = data.message;
-// 		})
-// 		.catch((err) => {
-// 			console.log(err);
-// 		});
-// 	// console.log(dog);
-// }
+const img_img = document.querySelector('.img');
+const select_div = document.querySelector('.selector-container');
 
 async function randomDog() {
-	let dogRand = sel.value.replace(regex, '/');
-	const response = await fetch(`https://dog.ceo/api/breed/${dogRand}/images/random`);
+	const response = await fetch(`https://dog.ceo/api/breeds/list/all`);
 	const data = await response.json();
 	console.log(data);
-	img.src = data.message;
+	createBreedList(data.message);
 }
 
-setInterval(randomDog, 3000);
+randomDog();
+
+function createBreedList(breedList) {
+	select_div.innerHTML = `
+		<select>
+            <option>Choose A Dog To Breed</option>
+            ${Object.keys(breedList).map((cur) => {
+				return `<option>${cur}</option>`;
+			})}
+        </select>
+	`;
+}
