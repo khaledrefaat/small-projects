@@ -1,14 +1,31 @@
 const img = document.querySelector('.img');
-// fetch('https://dog.ceo/api/breeds/image/random').then((res) => res.json()).then((data) => {
-// 	console.log(data);
-// 	img.src = data.message;
-// })
-
-function randomDog() {
-	fetch('https://dog.ceo/api/breed/husky/images/random').then((res) => res.json()).then((data) => {
+const sel = document.querySelector('.dog-selector');
+let dog = sel.value.replace(/'-'/gm, '/');
+fetch(`https://dog.ceo/api/breed/${dog}/images/random`)
+	.then((res) => res.json())
+	.then((data) => {
 		console.log(data);
 		img.src = data.message;
+	})
+	.catch((err) => {
+		console.log(err);
 	});
+
+function randomDog() {
+	let regex = /-/gm;
+	// when the dog names contains 2 words like(english bulldog) the api puts(english-bulldog) we are replacing the(-)
+	let dogRand = sel.value.replace(regex, '/');
+
+	fetch(`https://dog.ceo/api/breed/${dogRand}/images/random`)
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(data);
+			img.src = data.message;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	// console.log(dog);
 }
 
-setInterval(randomDog, 2000);
+setInterval(randomDog, 3000);
