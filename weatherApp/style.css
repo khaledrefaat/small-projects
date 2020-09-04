@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.25%; /* to make 1rem = 10px*/
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    height: 100vh;
+    background: linear-gradient(rgb(9, 132, 227), rgb(1, 163, 164));
+    color: #fff;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.location,
+.temperature {
+    height: 30vh;
+    width: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.temperature {
+    flex-direction: column;
+}
+
+.temperature__degree {
+    font-size: 5rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+
+.temperature__description {
+    font-size: 2rem;
+}
