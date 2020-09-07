@@ -24,11 +24,20 @@ function createBreedList(breedList) {
 }
 
 async function loadByBreed(breed) {
+	breed = breed || 'african';
 	if (breed !== 'Choose A Dog To Breed') {
-		const response = await fetch(`https://dog.ceo/api/breed/hound/images/random`);
+		const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`);
 		const data = await response.json();
-		img_div.innerHTML = `
-		<img src="${data.message}" alt="dog" class="img">
-`;
+		console.log(data);
+		createSlideShow(data.message);
 	}
+}
+
+loadByBreed();
+
+function createSlideShow(images) {
+	let currPosition = 0;
+	img_div.innerHTML = `
+		<div class="slide" style="background-image: url(${images[currPosition]})"></div>
+	`;
 }

@@ -36,8 +36,10 @@ select {
 	font-size: 1.8rem;
 }
 
-img {
+.slide {
 	width: 60rem;
 	height: 60rem;
-	transition: all .3s;
+	margin-top: 5rem;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
