@@ -1,0 +1,136 @@
+        /* Start main rules */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {font-size: 62.5%;box-sizing: border-box;}
+
+body {font-family: 'Roboto', sans-serif;}
+
+
+.container {
+    margin: 0 auto;
+}
+
+        /* end main rules */
+
+        /* start navbar style */
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__brand {
+    font-size: 3rem;
+    margin-left: 6rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-right: auto;
+}
+
+.navbar__brand a {
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar__list {
+    list-style: none;
+    display: flex;
+}
+
+
+.navbar__item {
+    padding: 1rem;
+    margin-right: 4rem;
+    position: relative;
+    z-index: 1;
+    border-bottom: 2rem solid transparent;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .2s;
+}
+
+
+.navbar__link {
+    text-decoration: none;
+    color: #333;
+    font-size: 2rem;
+    text-transform: capitalize;
+    transition: color .2s;
+}
+
+.navbar__item:hover > .navbar__link {
+    color: #81ecec;
+}
+
+ /* start navbar dropdown style */
+
+.navbar__link:not(:only-child)::after {
+    content: "▾";
+    padding-left: .4rem;
+}
+
+.navbar__item {position: relative; /* to attach the dropdown bar to it */}
+
+.navbar__item ul {
+    list-style: none;
+/*     display: flex;
+    flex-direction: column; */
+    background-color: #333;
+    border-radius: .8rem;
+    margin-top: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    transition: all .2s;
+}
+
+.has_child:hover  > ul{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.navbar__item ul::before {
+    content: '';
+    bottom: 100%;
+    left: 15%;
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    position: absolute;
+    pointer-events: none;
+    margin-left: -.7rem;
+    border-bottom: solid #333;
+    border-width: 1rem;
+ 
+}
+
+
+.navbar__item ul li {
+    padding: 2rem;
+    min-width: 22rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.navbar__item ul li a {
+    color: #fff;
+    font-size: 2rem;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.navbar__item ul li:hover > a {
+    color: #81ecec;
+}
