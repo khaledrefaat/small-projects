@@ -7,8 +7,8 @@
 }
 
 html {
-    font-size: 62.5%; /* 10px = 1rem */
     box-sizing: border-box;
+    font-size: 31.25% /* 1rem = 7px */
 }
 
 body {
@@ -33,7 +33,7 @@ body {
 }
 
 .modal-dialog {
-    min-width: 90rem;
+    min-width: 60rem;
 }
 
 .modal-content {
@@ -96,4 +96,27 @@ body {
     top: 40%;
     left: 45%;
     /* transform: translate(-50%, -50%) rotate(); */
+}
+
+
+/* media screens */
+
+@media screen and (min-width: 22.5em) { /* min-width 360px */
+    html {font-size: 37.5% /* 1rem = 7px */}
+}
+
+@media screen and (min-width: 34.375em) { /* min-width 550px */
+    html {font-size: 50%; /*8px = 1rem*/}
+    .modal-dialog {min-width: 70rem;}
+}
+
+
+@media screen and (min-width: 46.875em) { /* min-width 750px */
+    html {font-size: 56.25%; /*9px = 1rem*/}
+    .modal-dialog {min-width: 80rem;}
+}
+
+@media screen and (min-width: 56.25em) { /* min-width 900px */
+    html {font-size: 62.5%; /*10px = 1rem*/}
+    .modal-dialog {min-width: 90rem;}
 }
