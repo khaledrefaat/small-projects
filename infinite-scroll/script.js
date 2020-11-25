@@ -1,20 +1,20 @@
 const imgContainer_div = document.getElementById('image-container');
 const loader_div = document.getElementById('loader');
 
+let count = 3;
 let photosArray = [];
 let ready = false;
 let imagesLoaded = 0;
 let totalImages = 0;
-
-const acssesKey = 'MN-WQaHUe88Vcure-x1gSBjuwvpYixZ7NVf5Q1QeX7o';
-// Secret Key - phygVDB2jFBEWSLNjgqYRlkLxJcTY2Ej6DZgD4s
+const Key = 'MN-WQaHUe88Vcure-x1gSBjuwvpYixZ7NVf5Q1QeX7o';
+let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${Key}&count=${count}`;
 
 const loadedImages = () => {
-	console.log('loaded');
 	imagesLoaded++;
 	if (imagesLoaded === totalImages) {
+		loader_div.hidden = true;
 		ready = true;
-		console.log('ready = ', true);
+		count = 7;
 	}
 };
 
@@ -37,7 +37,7 @@ const displayPhotos = () => {
 		// create img
 		const img = document.createElement('img');
 		setAttributes(img, {
-			src: cur.urls.small,
+			src: cur.urls.regular,
 			alt: cur.description_alt,
 			title: cur.description_alt
 		});
@@ -49,7 +49,7 @@ const displayPhotos = () => {
 };
 
 const getPhotos = async () => {
-	const response = await fetch(`https://api.unsplash.com/photos/random/?client_id=${acssesKey}&count=30`);
+	const response = await fetch(apiUrl);
 	photosArray = await response.json();
 	displayPhotos();
 };
