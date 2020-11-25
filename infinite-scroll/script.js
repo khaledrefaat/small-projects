@@ -1,27 +1,34 @@
 const imgContainer_div = document.getElementById('image-container');
 const loader_div = document.getElementById('loader');
 
+let photosArray = [];
+let ready = false;
+let imagesLoaded = 0;
+let totalImages = 0;
+
 const acssesKey = 'MN-WQaHUe88Vcure-x1gSBjuwvpYixZ7NVf5Q1QeX7o';
-// Secret Key - phygVDB2jFBEWSLNjgqYRlkLxJcTY2Ej6DZgD4suy0Q
+// Secret Key - phygVDB2jFBEWSLNjgqYRlkLxJcTY2Ej6DZgD4s
 
-const displayPhotos = arr => {
-	// my code
-	// const photos = arr.map(({ alt_description, links, urls }) => {
-	// 	return `
-	// 		<a href"${links.html}">
-	// 		<img src="${urls.regular}" alt="${alt_description}">
-	// 		</a>
-	// 	`;
-	// });
-	// imgContainer_div.insertAdjacentHTML('beforeend', photos);
+const loadedImages = () => {
+	console.log('loaded');
+	imagesLoaded++;
+	if (imagesLoaded === totalImages) {
+		ready = true;
+		console.log('ready = ', true);
+	}
+};
 
-	// course's code
+const displayPhotos = () => {
+	imagesLoaded = 0;
+	totalImages = photosArray.length;
+
+	// helper function
 	const setAttributes = (element, attributes) => {
 		for (const key in attributes) {
 			element.setAttribute(key, attributes[key]);
 		}
 	};
-	arr.forEach(cur => {
+	photosArray.forEach(cur => {
 		const item = document.createElement('a');
 		setAttributes(item, {
 			href: cur.links.html,
@@ -30,10 +37,11 @@ const displayPhotos = arr => {
 		// create img
 		const img = document.createElement('img');
 		setAttributes(img, {
-			src: cur.urls.regular,
+			src: cur.urls.small,
 			alt: cur.description_alt,
 			title: cur.description_alt
 		});
+		img.addEventListener('load', loadedImages);
 		// put img inside a
 		item.appendChild(img);
 		imgContainer_div.appendChild(item);
@@ -42,13 +50,15 @@ const displayPhotos = arr => {
 
 const getPhotos = async () => {
 	const response = await fetch(`https://api.unsplash.com/photos/random/?client_id=${acssesKey}&count=30`);
-	const photosArray = await response.json();
-	displayPhotos(photosArray);
-	console.log('yeaaa!');
+	photosArray = await response.json();
+	displayPhotos();
 };
 
 window.addEventListener('scroll', () => {
-	if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) setTimeout(getPhotos, 500);
+	if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
+		ready = false;
+		getPhotos();
+	}
 });
 
 getPhotos();
