@@ -41,9 +41,14 @@ const displayPhotos = arr => {
 };
 
 const getPhotos = async () => {
-	const response = await fetch(`https://api.unsplash.com/photos/random/?client_id=${acssesKey}&count=15`);
+	const response = await fetch(`https://api.unsplash.com/photos/random/?client_id=${acssesKey}&count=30`);
 	const photosArray = await response.json();
 	displayPhotos(photosArray);
+	console.log('yeaaa!');
 };
+
+window.addEventListener('scroll', () => {
+	if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) setTimeout(getPhotos, 500);
+});
 
 getPhotos();
