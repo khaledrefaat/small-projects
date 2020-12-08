@@ -1,9 +1,5 @@
-const button = document.getElementById('button');
-const audioElement = document.getElementById('audio');
-const apiKey = '9c0f77ae5d45404ba38fe9f65e68782d';
-
-// VoiceRSS Javascript SDK
-const VoiceRSS = {
+'use strict';
+export const VoiceRSS = {
 	speech: function(e) {
 		this._validate(e), this._request(e);
 	},
@@ -39,7 +35,7 @@ const VoiceRSS = {
 		(t.onreadystatechange = function() {
 			if (4 == t.readyState && 200 == t.status) {
 				if (0 == t.responseText.indexOf('ERROR')) throw t.responseText;
-				(audioElement.src = t.responseText), audioElement.play();
+				new Audio(t.responseText).play();
 			}
 		}),
 			t.open('POST', 'https://api.voicerss.org/', !0),
@@ -55,6 +51,8 @@ const VoiceRSS = {
 			(e.src || '') +
 			'&hl=' +
 			(e.hl || '') +
+			'&v=' +
+			(e.v || '') +
 			'&r=' +
 			(e.r || '') +
 			'&c=' +
@@ -100,18 +98,3 @@ const VoiceRSS = {
 		throw 'The browser does not support HTTP request';
 	}
 };
-
-function test() {
-	VoiceRSS.speech({
-		key: apiKey,
-		src: 'Hello, world!',
-		hl: 'en-us',
-		v: 'Linda',
-		r: 0,
-		c: 'mp3',
-		f: '44khz_16bit_stereo',
-		ssml: false
-	});
-}
-
-test();
