@@ -26,9 +26,9 @@ body {
     justify-content: center;
     flex-direction: column;
     background-image: url('./robot.gif');
-    background-position: -20rem center;
-    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 /* btn style */
@@ -46,16 +46,32 @@ body {
     color: #f5f5f5;
     transition: all .3s ease-out;
     cursor: pointer;
-    box-shadow: 2px 1rem 1.5rem rgba(0, 0, 0, .2);
+    box-shadow: 5px .5rem 3rem 2rem rgba(0, 0, 0, .2);
     
 }
 
 .btn:hover {filter: brightness(90%)}
 .btn:active {
     transform: scale(0.98);
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    box-shadow: 5px .5rem 2rem 1.5rem rgba(0, 0, 0, .15);
 }
 .button:disabled {
     cursor: default;
     filter: brightness(30%);
+}
+
+
+
+/* responsive style */
+
+/* min-width: 900px */
+@media screen and ( min-width: 56.25em ) {
+    .container {
+        background-position: -20rem center;
+        background-size: contain;
+    }
+
+    .btn {box-shadow: 2px 1rem 1.5rem rgba(0, 0, 0, .2);}
+
+    .btn:active {box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);}
 }
