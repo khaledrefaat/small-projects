@@ -115,9 +115,16 @@ function test(joke) {
 }
 
 async function joke() {
-	const response = await fetch('https://sv443.net/jokeapi/v2/joke/Programming?type=single');
-	const { joke } = await response.json();
-	test(joke);
+	let joke;
+	try {
+		const response = await fetch('https://sv443.net/jokeapi/v2/joke/Programming');
+		const data = await response.json();
+		data.joke ? (joke = data.joke) : (joke = `${data.setup} ${data.delivery}`);
+		test(joke);
+	} catch (err) {
+		console.log(err);
+		alert('error');
+	}
 }
 
 button.addEventListener('click', joke);
