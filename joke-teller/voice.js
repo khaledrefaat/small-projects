@@ -1,5 +1,4 @@
-'use strict';
-export const VoiceRSS = {
+const VoiceRSS = {
 	speech: function(e) {
 		this._validate(e), this._request(e);
 	},
@@ -35,7 +34,7 @@ export const VoiceRSS = {
 		(t.onreadystatechange = function() {
 			if (4 == t.readyState && 200 == t.status) {
 				if (0 == t.responseText.indexOf('ERROR')) throw t.responseText;
-				new Audio(t.responseText).play();
+				(audioElement.src = t.responseText), audioElement.play();
 			}
 		}),
 			t.open('POST', 'https://api.voicerss.org/', !0),
@@ -51,8 +50,6 @@ export const VoiceRSS = {
 			(e.src || '') +
 			'&hl=' +
 			(e.hl || '') +
-			'&v=' +
-			(e.v || '') +
 			'&r=' +
 			(e.r || '') +
 			'&c=' +
