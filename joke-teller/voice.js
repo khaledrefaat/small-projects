@@ -1,3 +1,6 @@
+'use strict';
+
+// VoiceRSS Javascript SDK
 const VoiceRSS = {
 	speech: function(e) {
 		this._validate(e), this._request(e);
