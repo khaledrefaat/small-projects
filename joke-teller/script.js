@@ -101,10 +101,10 @@ const VoiceRSS = {
 	}
 };
 
-function test() {
+function test(joke) {
 	VoiceRSS.speech({
 		key: apiKey,
-		src: 'Hello, world!',
+		src: joke,
 		hl: 'en-us',
 		v: 'Linda',
 		r: 0,
@@ -114,4 +114,10 @@ function test() {
 	});
 }
 
-test();
+async function joke() {
+	const response = await fetch('https://sv443.net/jokeapi/v2/joke/Programming?type=single');
+	const { joke } = await response.json();
+	test(joke);
+}
+
+button.addEventListener('click', joke);
